@@ -108,9 +108,8 @@
 	             music festival on the Las Vegas Strip. Following the event that left 58 people dead 
 	             and 851 people injured, there was a national debate on whether gun laws should become 
 	             much more restrictive or whether people should arm themselves to protect themselves. 
-	             Using visualization of gun violence data, we are able to investigate if gun violence is truly something 
-	             to be aware and afraid of or if Paddock’s incident was just an anomaly. We would assume that more gun laws means 
-		     less gun violence.</p>
+	             By visualizing gun violence data, we are able better understand what should be done. Common sense argues
+		     that the more gun laws you have, the less number of incidents you would have.</p>
                 </div>
             </div>
 
@@ -542,6 +541,7 @@
 
               			      Plotly.newPlot("incidentsbystate", data, layout, {displayModeBar: false, responsive: true});
               			});
+			    
                     </script>
                 </div>
             </div>
@@ -634,6 +634,7 @@
                 </div>
                 <div class="col-lg-12  col-sm-6" >
                     <div id="gunlaws"></div>
+		    <div id="gunlawsmap"></div>
                     <script>
                     Plotly.d3.csv("https://raw.githubusercontent.com/VialliOu/GunViolence/master/gunlaws.csv", function(err, rows){
               			            function unpack(rows, key) {
@@ -676,6 +677,56 @@
               	            };
               	            Plotly.newPlot("gunlaws", chartData, chartLayout, {displayModeBar: false, responsive: true});
                       });
+		
+			    Plotly.d3.csv('https://raw.githubusercontent.com/VialliOu/GunViolence/master/gunlaws.csv', function(err, rows){
+              			      function unpack(rows, key) {
+              			          return rows.map(function(row) { return row[key]; });
+              			      }
+
+              			      var data = [{
+              			          type: 'choropleth',
+              			          locationmode: 'USA-states',
+              			          locations: unpack(rows, 'Abbs'),
+              			          z: unpack(rows, 'Number of Gun Laws'),
+              			          text: unpack(rows, 'State'),
+              			          zmin: 0,
+              			          zmax: 150,
+              			          colorbar: {
+              			              title: 'Number of Incidents',
+              			              //thickness: 0.2
+              			          },
+              			          marker: {
+              			              line:{
+              			                  //color: 'rgb(255,255,255)',
+              			                  width: 1
+              			              }
+              			          },
+              			      }];
+
+
+              			      var layout = {
+              			          title: 'Number of Incidents per State (2014-2018)',
+              			          geo:{
+              			              scope: 'usa',
+              			          },
+              								//width: 1700,
+              				        height: 700,
+              								hoverlabel: {
+              									font: {
+              										size: 15
+              									}
+              								},
+              								font: {
+              									family: "Helvetica",
+              									color: "#000000",
+              									size: 13
+              								},
+                              paper_bgcolor: 'rgba(0,0,0,0)',
+                              plot_bgcolor: 'rgba(0,0,0,0)',
+              			      };
+
+              			      Plotly.newPlot("gunlawsmap", data, layout, {displayModeBar: false, responsive: true});
+              			});
                     </script>
                 </div>
             </div>
