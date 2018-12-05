@@ -506,7 +506,7 @@
               			          zmin: 0,
               			          zmax: 17000,
               			          colorbar: {
-              			              title: 'Number of Incidents',
+              			              //title: 'Number of Incidents',
               			              //thickness: 0.2
               			          },
               			          marker: {
@@ -686,13 +686,14 @@
               			      var data = [{
               			          type: 'choropleth',
               			          locationmode: 'USA-states',
-              			          locations: unpack(rows, 'Abbs'),
+              			          locations: unpack(rows, 'Abb'),
               			          z: unpack(rows, 'Number of Gun Laws'),
               			          text: unpack(rows, 'State'),
               			          zmin: 0,
               			          zmax: 150,
+					  colorscale: "Blues",
               			          colorbar: {
-              			              title: 'Number of Incidents',
+              			              //title: 'Number of Gun Laws',
               			              //thickness: 0.2
               			          },
               			          marker: {
@@ -705,7 +706,7 @@
 
 
               			      var layout = {
-              			          title: 'Number of Incidents per State (2014-2018)',
+              			          title: 'Number of Gun Laws per State',
               			          geo:{
               			              scope: 'usa',
               			          },
