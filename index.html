@@ -630,7 +630,7 @@
                     This might seem like it is not a safe place, but from the last chart we saw it is a relatively safe place. Flordia and Texas are the other two leading states
 	            with the most number of incidents but they have about 40 less gun laws than Illinoies and about 80 less than California but the number of incidents are 
 	            are still the same. There are many states across the nation with a much lower number of gun laws but still manages to have fewer incident.
-		    The cause of this could be that the top incidents states might have a problem with illegally owned guns which circumvent gun ownership laws.</p>
+		    The cause of this could be that the top incident states might have a problem with illegally owned guns which circumvent gun ownership laws.</p>
                 </div>
                 <div class="col-lg-12  col-sm-6" >
                     <div id="gunlaws"></div>
@@ -690,8 +690,11 @@
               			          z: unpack(rows, 'Number of Gun Laws'),
               			          text: unpack(rows, 'State'),
               			          zmin: 0,
-              			          zmax: 150,
-					  colorscale: "Blues",
+              			          zmax: 110,
+					  colorscale: [
+						[0,'rgb(5, 10, 172)'],[0.35,'rgb(40, 60, 190)'],
+						[0.5,'rgb(70, 100, 245)'], [0.6,'rgb(90, 120, 245)'],
+						[0.7,'rgb(106, 137, 247)'],[1,'rgb(220, 220, 220)']],
               			          colorbar: {
               			              //title: 'Number of Gun Laws',
               			              //thickness: 0.2
